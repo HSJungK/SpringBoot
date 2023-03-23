@@ -8,3 +8,5 @@
  */
 
 rootProject.name = "spring_boot"
+
+include("example-first")
