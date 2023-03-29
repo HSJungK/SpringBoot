@@ -29,9 +29,7 @@ Spring 팀에서 "반응형"과 연관시키는 또 다른 중요한 메커니�
 
 반응형 스트림는 비동기 구성 요소와 back pressure 간의 상호 작용을 정의하는 작은 사양(Java 9에서도 채택됨)입니다. 예를 들어, 데이터 저장소(제공자 역할)는 HTTP 서버(구독자 역할)가 응답에 쓸 수 있는 데이터를 생성할 수 있습니다. 반응형 스트림 주요 목적은 구독자가 제공자가 데이터를 생성하는 속도 또는 속도를 제어할 수 있도록 하는 것입니다.
 
-    일반적인 질문: 게시자가 속도를 늦출 수 없으면 어떻게 됩니까?
-    반응형 스트림의 목적은 메커니즘과 경계를 설정하는 것입니다.
-    게시자가 속도를 줄일 수 없는 경우 버퍼링, 삭제 또는 실패 여부를 결정해야 합니다.
+> **Note:** 일반적인 질문: 게시자가 속도를 늦출 수 없으면 어떻게 됩니까? 반응형 스트림의 목적은 메커니즘과 경계를 설정하는 것입니다. 게시자가 속도를 줄일 수 없는 경우 버퍼링, 삭제 또는 실패 여부를 결정해야 합니다.
 
 * * *
 ### [Reactive API](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-reactive-api)
@@ -42,9 +40,7 @@ Reactor는 Spring WebFlux를 위한 반응형 라이브러리입니다. 0..1 (Mo
 
 WebFlux에는 Reactor가 핵심 종속성으로 필요하지만 반응형 스트림을 통해 다른 반응형 라이브러리와 상호 운용할 수 있습니다. 일반적으로 WebFlux API는 일반 제공자를 입력으로 수락하고 내부적으로 이를 Reactor 유형에 맞게 조정한 다음 Flux 또는 Mono를 출력으로 반환합니다. 따라서 모든 제공자를 입력으로 전달하고 출력에 작업을 적용할 수 있지만 다른 반응형 라이브러리에서 사용할 수 있도록 출력을 조정해야 합니다. 실행할 때마다(예: 주석이 달린 컨트롤러) WebFlux는 RxJava 또는 다른 반응형 라이브러리의 사용에 투명하게 적응합니다. 자세한 내용은 [Reactive 라이브러리](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-reactive-libraries)를 참조하십시오. 
 
-    Reactive API 외에도,
-    WebFlux는 Kotlin의 Coroutines API와도 함께 사용할 수 있으며,
-    이는 보다 엄숙한 프로그래밍 스타일을 제공합니다.
+> **Note:** Reactive API 외에도, WebFlux는 Kotlin의 Coroutines API와도 함께 사용할 수 있으며, 이는 보다 엄숙한 프로그래밍 스타일을 제공합니다.
 
 * * *
 ### [Programming Models](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-programming-models)
@@ -98,6 +94,44 @@ Undertow의 경우, Spring WebFlux는 서블릿 API 없이 Undertow API를 직�
 성능에는 많은 특징과 의미가 있습니다. 일반적으로 반응형이고 non-blocking이라고 해서 애플리케이션 실행 속도가 빨라지는 것은 아닙니다. 예를 들어, WebClient를 사용하여 원격 호출을 병렬로 실행하는 경우 등과 같은 경우에 사용할 수 있습니다. 전반적으로, non-blocking 방식으로 작업을 수행하려면 더 많은 작업이 필요하며, 이는 필요한 처리 시간을 약간 증가시킬 수 있습니다. 
 
 반응형 및 non-blocking의 주요 기대 이점은 적은 수의 고정된 수의 스레드와 적은 메모리로 확장할 수 있다는 것입니다. 이는 애플리케이션이 보다 예측 가능한 방식으로 확장되기 때문에 로드 시 애플리케이션의 복원력을 향상시킵니다. 그러나 이러한 이점을 확인하려면 지연 시간이 어느 정도 있어야 합니다(느리고 예측할 수 없는 네트워크 I/O 혼합 포함). 여기서 반응형 스택이 장점을 드러내기 시작하며, 차이는 극적일 수 있습니다.
+
+* * *
+### [Concurrency Model(동시성 모델)](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-concurrency-model)
+* * *
+
+Spring MVC와 Spring WebFlux는 annotation이 달린 컨트롤러를 모두 지원하지만 동시성 모델과 차단 및 스레드에 대한 기본 가정에는 중요한 차이가 있습니다.
+
+Spring MVC(및 일반적인 서블릿 애플리케이션)에서는 애플리케이션이 현재 스레드(예: 원격 호출)를 차단할 수 있다고 가정합니다. 이러한 이유로 서블릿 컨테이너는 큰 스레드 풀을 사용하여 요청 처리 중에 잠재적인 차단을 완화합니다.
+
+Spring WebFlux(및 일반적으로 non-blocking 서버)에서는 응용프로그램이 차단되지 않는 것으로 가정합니다. 따라서 비차단 서버는 작은 크기의 고정된 스레드 풀(이벤트 루프 작업자)을 사용하여 요청을 처리합니다.
+
+> **Tip:** "스케일링"과 "스레드 수가 적음"은 모순적으로 들릴 수 있지만 현재 스레드를 차단하지 않고 콜백에 의존한다는 것은 흡수할 차단 호출이 없기 때문에 추가 스레드가 필요하지 않다는 것을 의미합니다.
+
+* [Invoking a Blocking API(차단 API 호출)](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#invoking-a-blocking-api)
+
+    차단 라이브러리를 사용해야 할 경우 어떻게 해야 합니까? Reactor와 RxJava 모두 `publishOn` 연산자를 제공하여 다른 스레드에서 처리를 계속합니다. 그것은 쉽게 탈출할 수 있는 탈출구가 있다는 것을 의미합니다. 그러나 API를 차단하는 것은 이 동시성 모델에 적합하지 않습니다.
+
+
+* [Mutable State](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#mutable-state)
+
+  Reactor 및 RxJava에서는 연산자를 통해 로직를 선언합니다. 런타임에 반응형 파이프라인이 형성되어 데이터가 서로 다른 단계로 순차적으로 처리됩니다. 파이프라인 내의 애플리케이션 코드가 동시에 호출되지 않기 때문에 애플리케이션이 가변 상태를 보호할 필요가 없다는 것이 주요 이점입니다.
+
+
+* [Threading Model](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#threading-model)
+
+  Spring WebFlux로 실행되는 서버에서 어떤 스레드를 확인해야 합니까?
+
+  - "vanilla" Spring WebFlux 서버(예: 데이터 액세스 또는 기타 선택적 종속성이 없는)에서 요청 처리를 위해 하나의 스레드와 여러 개의 다른 스레드(일반적으로 CPU 코어 수만큼)를 예상할 수 있습니다. 그러나 서블릿 컨테이너는 서블릿(blocking) I/O와 서블릿 3.1(non-blocking) I/O 사용을 모두 지원하기 위해 더 많은 스레드(예: Tomcat의 경우 10개)로 시작할 수 있습니다.
+
+  - 반응형 `WebClient`는 이벤트 루프 스타일로 작동합니다. 따라서 이와 관련된 소수의 고정된 처리 스레드(예: Reactor Netty 커넥터가 있는 `reactor-http-nio-`)를 볼 수 있습니다. 그러나 Reactor Netty가 클라이언트와 서버 모두에 사용되는 경우 두 개는 기본적으로 이벤트 루프 리소스를 공유합니다.
+
+  - Reactor 및 RxJava는 처리를 다른 스레드 풀로 전환하는 데 사용되는 `publishOn` 연산자에 사용할 스케줄러라는 스레드 풀 추상화를 제공합니다. 스케줄러에는 "병렬"(스레드 수가 제한된 CPU 바인딩 작업의 경우) 또는 "탄력적"(스레드 수가 많은 I/O 바인딩 작업의 경우)과 같은 특정 동시성 전략을 제안하는 이름이 있습니다. 이러한 스레드가 표시되면 일부 코드가 특정 스레드 풀 스케줄러 전략을 사용하고 있음을 의미합니다.
+
+  - 데이터 액세스 라이브러리 및 기타 third party 종속성도 자체 스레드를 만들고 사용할 수 있습니다.
+
+* * *
+## [Reactive Core](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-reactive-spring-web)
+* * *
 
 
 ## WebClient
