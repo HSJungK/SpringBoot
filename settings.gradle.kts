@@ -9,4 +9,4 @@
 
 rootProject.name = "spring_boot"
 
-include("example-first", "example-webflux")
+include("example-first", "example-webflux", "example-security")
