@@ -10,7 +10,7 @@ Both web frameworks mirror the names of their source modules (spring-webmvc and 
 * [Reactive API](#Reactive API)
 
 * * *
-## [Overview](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-new-framework)
+## [1. Overview](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-new-framework)
 * * *
 Why was Spring WebFlux created?
 
@@ -19,7 +19,7 @@ Part of the answer is the need for a non-blocking web stack to handle concurrenc
 The other part of the answer is functional programming. The addition of lambda expressions in Java 8 created opportunities for functional APIs in Java. This is a boon for non-blocking applications and continuation-style APIs (as popularized by CompletableFuture and ReactiveX) that allow declarative composition of asynchronous logic. At the programming-model level, Java 8 enabled Spring WebFlux to offer functional web endpoints alongside annotated controllers.
 
 * * *
-### [Define “Reactive”](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-why-reactive)
+### [1.1. Define “Reactive”](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-why-reactive)
 * * *
 We touched on “non-blocking” and “functional” but what does reactive mean?
 
@@ -32,7 +32,7 @@ Reactive Streams is a small spec (also adopted in Java 9) that defines the inter
 > **Note:** Common question: what if a publisher cannot slow down? The purpose of Reactive Streams is only to establish the mechanism and a boundary. If a publisher cannot slow down, it has to decide whether to buffer, drop, or fail.
 
 * * *
-### [Reactive API](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-reactive-api)
+### [1.2. Reactive API](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-reactive-api)
 * * *
 Reactive Streams plays an important role for interoperability. It is of interest to libraries and infrastructure components but less useful as an application API, because it is too low-level. Applications need a higher-level and richer, functional API to compose async logic — similar to the Java 8 Stream API but not only for collections. This is the role that reactive libraries play.
 
@@ -43,7 +43,7 @@ WebFlux requires Reactor as a core dependency but it is interoperable with other
 > **Note:** In addition to Reactive APIs, WebFlux can also be used with Coroutines APIs in Kotlin which provides a more imperative style of programming. 
 
 * * *
-### [Programming Models](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-programming-models)
+### [1.3. Programming Models](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-programming-models)
 * * *
 
 The spring-web module contains the reactive foundation that underlies Spring WebFlux, including HTTP abstractions, Reactive Streams adapters for supported servers, codecs, and a core WebHandler API comparable to the Servlet API but with non-blocking contracts.
@@ -54,7 +54,7 @@ On that foundation, Spring WebFlux provides a choice of two programming models:
 * Functional Endpoints: Lambda-based, lightweight, and functional programming model. You can think of this as a small library or a set of utilities that an application can use to route and handle requests. The big difference with annotated controllers is that the application is in charge of request handling from start to finish versus declaring intent through annotations and being called back.
 
 * * *
-### [Applicability](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-framework-choice)
+### [1.4. Applicability](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-framework-choice)
 * * *
 
 Spring MVC or WebFlux?
@@ -74,7 +74,7 @@ We suggest that you consider the following specific points:
 * If you have a large team, keep in mind the steep learning curve in the shift to non-blocking, functional, and declarative programming. A practical way to start without a full switch is to use the reactive WebClient. Beyond that, start small and measure the benefits. We expect that, for a wide range of applications, the shift is unnecessary. If you are unsure what benefits to look for, start by learning about how non-blocking I/O works (for example, concurrency on single-threaded Node.js) and its effects.
 
 * * *
-### [Servers](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-server-choice)
+### [1.5. Servers](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-server-choice)
 * * *
 
 Spring WebFlux is supported on Tomcat, Jetty, Servlet containers, as well as on non-Servlet runtimes such as Netty and Undertow. All servers are adapted to a low-level, common API so that higher-level programming models can be supported across servers.
@@ -88,7 +88,7 @@ Tomcat and Jetty can be used with both Spring MVC and WebFlux. Keep in mind, how
 For Undertow, Spring WebFlux uses Undertow APIs directly without the Servlet API.
 
 * * *
-### [Performance](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-performance)
+### [1.6. Performance](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-performance)
 * * *
 
 Performance has many characteristics and meanings. Reactive and non-blocking generally do not make applications run faster. They can, in some cases, (for example, if using the WebClient to run remote calls in parallel). On the whole, it requires more work to do things the non-blocking way and that can slightly increase the required processing time.
@@ -96,7 +96,7 @@ Performance has many characteristics and meanings. Reactive and non-blocking gen
 The key expected benefit of reactive and non-blocking is the ability to scale with a small, fixed number of threads and less memory. That makes applications more resilient under load, because they scale in a more predictable way. In order to observe those benefits, however, you need to have some latency (including a mix of slow and unpredictable network I/O). That is where the reactive stack begins to show its strengths, and the differences can be dramatic.
 
 * * *
-### [Concurrency Model](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-concurrency-model)
+### [1.7. Concurrency Model](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-concurrency-model)
 * * *
 
 Both Spring MVC and Spring WebFlux support annotated controllers, but there is a key difference in the concurrency model and the default assumptions for blocking and threads.
@@ -130,11 +130,57 @@ In Spring WebFlux (and non-blocking servers in general), it is assumed that appl
   - Data access libraries and other third party dependencies can also create and use threads of their own.
 
 * * *
-## [Reactive Core](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-reactive-spring-web)
+## [2. Reactive Core](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-reactive-spring-web)
 * * *
+The `spring-web` module contains the following foundational support for reactive web applications:
+
+* For server request processing there are two levels of support.
+  * HttpHandler: Basic contract for HTTP request handling with non-blocking I/O and Reactive Streams back pressure, along with adapters for Reactor Netty, Undertow, Tomcat, Jetty, and any Servlet container.
+  * `WebHandler` API: Slightly higher level, general-purpose web API for request handling, on top of which concrete programming models such as annotated controllers and functional endpoints are built.
+
+* For the client side, there is a basic `ClientHttpConnector` contract to perform HTTP requests with non-blocking I/O and Reactive Streams back pressure, along with adapters for Reactor Netty, reactive Jetty HttpClient and Apache HttpComponents. The higher level WebClient used in applications builds on this basic contract.
+
+* For client and server, codecs for serialization and deserialization of HTTP request and response content.
+
+* * *
+### [2.1. HttpHandler](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-httphandler)
+* * *
+HttpHandler is a simple contract with a single method to handle a request and a response. It is intentionally minimal, and its main and only purpose is to be a minimal abstraction over different HTTP server APIs.
+
+The following table describes the supported server APIs:
+
+| Server name | Server API used | Reactive Streams support |
+|---|---|---|
+| Netty | Netty API | [Reactor Netty](https://github.com/reactor/reactor-netty) |
+| Undertow | Undertow API | spring-web: Undertow to Reactive Streams bridge |
+| Tomcat | Servlet non-blocking I/O; Tomcat API to read and write ByteBuffers vs byte[] | spring-web: Servlet non-blocking I/O to Reactive Streams bridge |
+| Jetty | Servlet non-blocking I/O; Jetty API to write ByteBuffers vs byte[] | spring-web: Servlet non-blocking I/O to Reactive Streams bridge |
+| Servlet container | Servlet non-blocking I/O | spring-web: Servlet non-blocking I/O to Reactive Streams bridge |
+
+The following table describes server dependencies (also see [supported versions](https://github.com/spring-projects/spring-framework/wiki/)):
+
+| Server name |	Group id | Artifact name |
+|---|---|---|
+| Reactor Netty | io.projectreactor.netty | reactor-netty |
+| Undertow | io.undertow | undertow-core |
+| Tomcat | org.apache.tomcat.embed | tomcat-embed-core |
+| Jetty | org.eclipse.jetty | jetty-server, jetty-servlet |
+
+* * *
+### [2.2. WebHandler API](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-web-handler-api)
+* * *
+The `org.springframework.web.server` package builds on the `HttpHandler` contract to provide a general-purpose web API for processing requests through a chain of multiple `WebExceptionHandler`, multiple `WebFilter`, and a single `WebHandler` component. The chain can be put together with `WebHttpHandlerBuilder` by simply pointing to a Spring `ApplicationContext` where components are auto-detected, and/or by registering components with the builder.
+
+While `HttpHandler` has a simple goal to abstract the use of different HTTP servers, the `WebHandler` API aims to provide a broader set of features commonly used in web applications such as:
+
+* User session with attributes.
+* Request attributes.
+* Resolved `Locale` or `Principal` for the request.
+* Access to parsed and cached form data.
+* Abstractions for multipart data.
+* and more..
 
 
 ## WebClient
 * [Document](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-client)
-* 
 

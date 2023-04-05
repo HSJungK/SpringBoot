@@ -10,7 +10,7 @@
 * [Reactive API](#Reactive API)
 
 * * *
-## [Overview](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-new-framework)
+## [1. Overview](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-new-framework)
 * * *
 왜 만들어졌나?
 
@@ -19,7 +19,7 @@
 또 다른 부분의 답은 함수형 프로그래밍입니다. Java 8에 추가된 람다 표현식은 Java에 함수형 API에 대한 기회를 만들었습니다. 이는 비동기 로직의 구성을 허용하는 non-blocking 애플리케이션 및 연속적인 스타일의 API(CompletableFuture 및 ReactiveX로 대중화됨)에 유용합니다. 프로그래밍 모델 레벨에서 Java 8은 Spring WebFlux가 주석이 달린 컨트롤러와 함께 함수형 웹 엔드포인트를 제공할 수 있도록 했습니다.
 
 * * *
-### [Define “Reactive”](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-why-reactive)
+### [1.1. Define “Reactive”](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-why-reactive)
 * * *
 우리는 "non-blocking"과 "함수형"을 다루었지만 반응형이란 무엇을 의미할까?
 
@@ -32,7 +32,7 @@ Spring 팀에서 "반응형"과 연관시키는 또 다른 중요한 메커니�
 > **Note:** 일반적인 질문: 게시자가 속도를 늦출 수 없으면 어떻게 됩니까? 반응형 스트림의 목적은 메커니즘과 경계를 설정하는 것입니다. 게시자가 속도를 줄일 수 없는 경우 버퍼링, 삭제 또는 실패 여부를 결정해야 합니다.
 
 * * *
-### [Reactive API](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-reactive-api)
+### [1.2. Reactive API](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-reactive-api)
 * * *
 반응형 스트림은 상호 운용성에 중요한 역할을 합니다. 라이브러리 및 인프라 구성 요소에 관심이 있지만 너무 low-level이기 때문에 애플리케이션 API로는 유용하지 않습니다. 애플리케이션은 비동기 로직을 구성하기 위해 higher-level의 다양한 기능을 갖춘 API가 필요합니다(Java 8 Stream API와 유사하지만 collenctions 뿐만이 아닌). 이것이 반응형 라이브러리가 하는 역할입니다.
 
@@ -43,7 +43,7 @@ WebFlux에는 Reactor가 핵심 종속성으로 필요하지만 반응형 스트
 > **Note:** Reactive API 외에도, WebFlux는 Kotlin의 Coroutines API와도 함께 사용할 수 있으며, 이는 보다 엄숙한 프로그래밍 스타일을 제공합니다.
 
 * * *
-### [Programming Models](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-programming-models)
+### [1.3. Programming Models](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-programming-models)
 * * *
 
 Spring-Web 모듈은 Spring WebFlux(HTTP 추상화, 지원되는 서버용 Reactive Streams 어댑터, 코덱 및 Servlet API와 유사하지만 non-blocking contracts가 있는 코어 WebHandler API를 포함하는)의 기반이 되는 reactive foundation를 담고 있습니다.
@@ -54,7 +54,7 @@ Spring-Web 모듈은 Spring WebFlux(HTTP 추상화, 지원되는 서버용 React
 * Functional Endpoints: 람다 기반, 경량 및 기능 프로그래밍 모델. 애플리케이션이 요청을 라우팅하고 처리하는 데 사용할 수 있는 작은 라이브러리 또는 유틸리티 집합이라고 생각할 수 있습니다. Annotated Controllers와의 큰 차이점은 애플리케이션이 처음부터 끝까지 요청 처리를 담당하는 반면 annotation을 통해 의도를 선언하고 다시 호출된다는 것입니다.
 
 * * *
-### [Applicability](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-framework-choice)
+### [1.4. Applicability](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-framework-choice)
 * * *
 
 Spring MVC or WebFlux?
@@ -74,7 +74,7 @@ Spring MVC or WebFlux?
 * 대규모 팀이 있는 경우, non-blocking, 기능 및 선언적 프로그래밍으로 전환할 때 가파른 학습 곡선을 염두에 두십시오. 완전한 교체 없이 시작하는 실질적인 방법은 반응형 Web Client를 사용하는 것입니다. 그 외에도 소규모로 시작하여 이점을 측정합니다. 광범위한 애플리케이션의 경우 전환이 필요하지 않을 것으로 예상됩니다. 어떤 이점을 찾아야 할지 모르는 경우 non-blocking I/O의 작동 방식(예: 단일 스레드 Node.js의 동시성)과 그 영향에 대해 알아봅니다.
 
 * * *
-### [Servers](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-server-choice)
+### [1.5. Servers](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-server-choice)
 * * *
 
 Spring WebFlux는 Tomcat, Jetty, Servlet 컨테이너뿐만 아니라 Netty 및 Undertow와 같은 서블릿이 아닌 런타임에서도 지원됩니다. 모든 서버는 low-level의 공통 API에 맞게 조정되어 서버 전체에서 higher-level의 프로그래밍 모델을 지원할 수 있습니다. 
@@ -88,7 +88,7 @@ Tomcat 및 Jetty는 Spring MVC 및 WebFlux와 함께 사용할 수 있습니다.
 Undertow의 경우, Spring WebFlux는 서블릿 API 없이 Undertow API를 직접 사용합니다.
 
 * * *
-### [Performance](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-performance)
+### [1.6. Performance](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-performance)
 * * *
 
 성능에는 많은 특징과 의미가 있습니다. 일반적으로 반응형이고 non-blocking이라고 해서 애플리케이션 실행 속도가 빨라지는 것은 아닙니다. 예를 들어, WebClient를 사용하여 원격 호출을 병렬로 실행하는 경우 등과 같은 경우에 사용할 수 있습니다. 전반적으로, non-blocking 방식으로 작업을 수행하려면 더 많은 작업이 필요하며, 이는 필요한 처리 시간을 약간 증가시킬 수 있습니다. 
@@ -96,7 +96,7 @@ Undertow의 경우, Spring WebFlux는 서블릿 API 없이 Undertow API를 직�
 반응형 및 non-blocking의 주요 기대 이점은 적은 수의 고정된 수의 스레드와 적은 메모리로 확장할 수 있다는 것입니다. 이는 애플리케이션이 보다 예측 가능한 방식으로 확장되기 때문에 로드 시 애플리케이션의 복원력을 향상시킵니다. 그러나 이러한 이점을 확인하려면 지연 시간이 어느 정도 있어야 합니다(느리고 예측할 수 없는 네트워크 I/O 혼합 포함). 여기서 반응형 스택이 장점을 드러내기 시작하며, 차이는 극적일 수 있습니다.
 
 * * *
-### [Concurrency Model(동시성 모델)](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-concurrency-model)
+### [1.7. Concurrency Model(동시성 모델)](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-concurrency-model)
 * * *
 
 Spring MVC와 Spring WebFlux는 annotation이 달린 컨트롤러를 모두 지원하지만 동시성 모델과 차단 및 스레드에 대한 기본 가정에는 중요한 차이가 있습니다.
@@ -130,9 +130,55 @@ Spring WebFlux(및 일반적으로 non-blocking 서버)에서는 응용프로그
   - 데이터 액세스 라이브러리 및 기타 third party 종속성도 자체 스레드를 만들고 사용할 수 있습니다.
 
 * * *
-## [Reactive Core](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-reactive-spring-web)
+## [2. Reactive Core](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-reactive-spring-web)
 * * *
+`spring-web` module에는 반응형 웹 애플리케이션에 대한 다음과 같은 기본 지원이 포함되어 있습니다:
 
+* 서버 요청 처리에는 두 가지 수준의 지원이 있습니다.
+  * HttpHandler: Reactor Netty, Underow, Tomcat, Jetty 및 모든 Servlet 컨테이너용 어댑터와 함께 non-blocking I/O 및 Reactive Streams pressure를 통한 HTTP 요청 처리를 위한 기본 계약
+  * `WebHandler` API: 요청 처리를 위한 약간 더 높은 수준의 범용 웹 API로, annotaion이 달린 컨트롤러 및 기능적 endpoints와 같은 구체적인 프로그래밍 모델이 구축됩니다.
+
+* 클라이언트 측의 경우, eactor Netty, Reactive Jetty HttpClient 및 Apache HttpComponent용 어댑터와 함께 non-blocking I/O 및 Reactive Streams pressure으로 HTTP 요청을 수행하기 위한 기본 `ClientHttpConnector` 계약이 있습니다. 애플리케이션에 사용되는 상위 수준의 WebClient는 이 기본 계약을 기반으로 합니다.
+
+* 클라이언트 및 서버를 위해서, HTTP 요청 및 응답 내용의 직렬화 및 역직렬화를 위한 코덱이 있습니다.
+
+* * *
+### [2.1. HttpHandler](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-httphandler)
+* * *
+HttpHandler는 요청 및 응답을 처리하는 단일 메서드를 가진 단순 계약입니다. 이것은 의도적으로 최소화한 것으로, 주요한 목적은 서로 다른 HTTP 서버 API에 대한 최소한의 추상화입니다.
+
+다음 표에서는 지원되는 서버 API에 대해 설명합니다:
+
+| Server name | Server API used | Reactive Streams support |
+|---|---|---|
+| Netty | Netty API | [Reactor Netty](https://github.com/reactor/reactor-netty) |
+| Undertow | Undertow API | spring-web: Undertow to Reactive Streams bridge |
+| Tomcat | Servlet non-blocking I/O; Tomcat API to read and write ByteBuffers vs byte[] | spring-web: Servlet non-blocking I/O to Reactive Streams bridge |
+| Jetty | Servlet non-blocking I/O; Jetty API to write ByteBuffers vs byte[] | spring-web: Servlet non-blocking I/O to Reactive Streams bridge |
+| Servlet container | Servlet non-blocking I/O | spring-web: Servlet non-blocking I/O to Reactive Streams bridge |
+
+다음 표에서는 서버 종속성에 대해 설명합니다 ([지원되는 버전 참조](https://github.com/spring-projects/spring-framework/wiki/)):
+
+| Server name |	Group id | Artifact name |
+|---|---|---|
+| Reactor Netty | io.projectreactor.netty | reactor-netty |
+| Undertow | io.undertow | undertow-core |
+| Tomcat | org.apache.tomcat.embed | tomcat-embed-core |
+| Jetty | org.eclipse.jetty | jetty-server, jetty-servlet |
+
+* * *
+### [2.2. WebHandler API](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-web-handler-api)
+* * *
+`org.springframework.web.server` 패키지는 `HttpHandler` 계약을 기반으로 구축되어 여러 `WebExceptionHandler`, 여러 `WebFilter` 및 단일 `WebHandler` 구성 요소의 체인을 통해 요청을 처리하기 위한 범용 웹 API를 제공합니다. 체인은 구성 요소가 자동으로 검색되는 Spring `ApplicationContext`를 가리키거나 구성 요소를 Builder에 등록하여 `WebHttpHandlerBuilder`와 함께 결합할 수 있습니다. 
+
+`HttpHandler`는 다양한 HTTP 서버의 사용을 추상화하는 간단한 목표를 가지고 있지만 `WebHandler` API는 다음과 같은 웹 응용 프로그램에서 일반적으로 사용되는 광범위한 기능 집합을 제공하는 것을 목표로 합니다:
+
+* 속성이 있는 사용자 세션.
+* 요청 속성.
+* 요청에 대해 `Locale` 또는 "Principal`를 해결.
+* 파싱되고 캐쉬된 형태의 데이터에 접근.
+* 멀티파트 데이터에 대한 추상화.
+* and more..
 
 ## WebClient
 * [Document](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-client)
