@@ -12,7 +12,7 @@
     - Java : 17
 
 ## How to add security example in spring boot
-* step 1 - [download initialized project](https://start.spring.io/#!type=gradle-project-kotlin&language=kotlin&platformVersion=3.0.5&packaging=jar&jvmVersion=17&groupId=com.example.webflux&artifactId=example-webflux&name=example-webflux&description=WebFlux%20example%20project%20for%20Spring%20Boot&packageName=com.example.webflux&dependencies=security)
+* step 1 - [download initialized project](https://start.spring.io/#!type=gradle-project-kotlin&language=kotlin&platformVersion=3.0.5&packaging=jar&jvmVersion=17&groupId=com.example.security&artifactId=example-security&name=example-security&description=Security%20example%20project%20for%20Spring%20Boot&packageName=com.example.security&dependencies=web,security,data-jpa,lombok)
 * step 2 - click 'GENERATE' button
 * step 3 - upzip the 'example-security.zip'
 * step 4 - move the 'example-security' folder to spring boot project folder
