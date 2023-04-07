@@ -19,3 +19,14 @@
 * step 5 - delete gradlew, gradle folder, gradlew.bat, .gitignore
     - <code>$ rm -rf .gitignore gradle gradlew gradlew.bat settings.gradle.kts</code>
 * step 6 - add <code>include("example-security")</code> in settings.gradle.kts file
+
+## JWT Authentication and Authorisation
+### Refer to
+* Youtube - https://www.youtube.com/watch?v=KxqlJblhzfI&t=3739s
+* github - https://github.com/ali-bouali/spring-boot-3-jwt-security
+
+### 1. Create User entity 
+refer to `User.kt` file
+
+implement UserDetails to User class
+
