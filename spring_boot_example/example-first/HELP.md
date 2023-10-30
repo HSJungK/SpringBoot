@@ -1,4 +1,4 @@
-**# First example project
+# First example project
 * Project : Gradle(Kotlin)
 * Language : Kotlin
 * Spring Boot : 3.1.4
@@ -19,3 +19,5 @@
 * step 5 - delete gradlew, gradle folder, gradlew.bat, .gitignore
   - <code>$ rm -rf .gitignore gradle gradlew gradlew.bat settings.gradle.kts</code>
 * step 6 - add <code>include("example-first")</code> in settings.gradle.kts file**
+
+## How to set Swagger to Spring boot 3 - [link](https://delicate-walrus-052.notion.site/Swagger-with-Spring-boot-3-x-4ab2fa1b158545058accdf393d127e8f?pvs=4)

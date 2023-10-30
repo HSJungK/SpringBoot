@@ -20,6 +20,11 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+	// Swagger
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.2.0")
+	implementation("org.springframework.boot:spring-boot-starter-validation")		// For NoProviderFoundException
 }
 
 tasks.withType<KotlinCompile> {
