@@ -1,11 +1,12 @@
-package com.example.first.swagger.model
+package com.example.model
 
-import com.example.first.swagger.model.ResponseContents.Code.NO_USER_CODE
-import com.example.first.swagger.model.ResponseContents.Code.OK_CODE
-import com.example.first.swagger.model.ResponseContents.Code.USER_EXISTS_CODE
-import com.example.first.swagger.model.ResponseContents.Message.NO_USER_MESSAGE
-import com.example.first.swagger.model.ResponseContents.Message.OK_MESSAGE
-import com.example.first.swagger.model.ResponseContents.Message.USER_EXISTS_MESSAGE
+import com.example.model.jpa.entity.USER_JSON_FORMAT
+import com.example.model.ResponseContents.Code.NO_USER_CODE
+import com.example.model.ResponseContents.Code.OK_CODE
+import com.example.model.ResponseContents.Code.USER_EXISTS_CODE
+import com.example.model.ResponseContents.Message.NO_USER_MESSAGE
+import com.example.model.ResponseContents.Message.OK_MESSAGE
+import com.example.model.ResponseContents.Message.USER_EXISTS_MESSAGE
 import com.fasterxml.jackson.annotation.JsonInclude
 import io.swagger.v3.oas.annotations.media.Schema
 

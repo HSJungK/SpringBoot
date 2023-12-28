@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.3"
 	kotlin("jvm") version "1.8.22"
 	kotlin("plugin.spring") version "1.8.22"
+	kotlin("plugin.jpa") version "1.8.22"
 }
 
 group = "com.example"
@@ -25,6 +26,10 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.2.0")
 	implementation("org.springframework.boot:spring-boot-starter-validation")		// For NoProviderFoundException
+
+	// Database - mariaDB
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 }
 
 tasks.withType<KotlinCompile> {
