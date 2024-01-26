@@ -10,3 +10,10 @@
 rootProject.name = "spring_boot"
 
 include("example", "example-webflux", "example-security")
+
+/*
+    Project port
+    example : 8081
+    example-webflux : 8082
+    example-security : 8083
+ */

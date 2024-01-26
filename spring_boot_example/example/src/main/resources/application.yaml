@@ -1,5 +1,5 @@
 server:
-  port: 10001
+  port: 8081
 
 springdoc:
   default-consumes-media-type: application/x-www-form-urlencoded
