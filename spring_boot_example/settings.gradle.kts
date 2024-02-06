@@ -16,6 +16,7 @@ include("library")
 
 include("example")
 include("example-webflux")
+include("example-websocket")
 include("example-security")
 
 /*
@@ -23,4 +24,5 @@ include("example-security")
     example : 8081
     example-webflux : 8082
     example-security : 8083
+    example-websocket : 8084
  */
