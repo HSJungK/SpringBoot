@@ -45,7 +45,13 @@ function enterRoom() {
         console.log('Received: ' + message);
         showMessage(JSON.parse(message.body).message);
     });
+
+    var responseUser = stompClient.subscribe('/user/chatting', function (message) {
+        console.log('Received: ' + message);
+        showMessage(JSON.parse(message.body).message);
+    });
     console.log('Subscribe response: %o', JSON.stringify(response));
+    console.log('Subscribe response user: %o', JSON.stringify(responseUser));
 }
 
 function sendMessage() {
